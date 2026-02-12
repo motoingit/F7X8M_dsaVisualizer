@@ -19,6 +19,16 @@ export default function LinearSearch() {
         setActiveIndex(null);
     };
 
+    const generateWorstCase = () => {
+        const newArray = Array.from({ length: 15 }, (_, i) => i + 5);
+        setArray(newArray);
+        const lastVal = newArray[newArray.length - 1];
+        setTarget(lastVal);
+        setMessage(`Worst Case: Target ${lastVal} is at the end.`);
+        setFoundIndex(null);
+        setActiveIndex(null);
+    };
+
     const startSearch = async () => {
         if (target === '' || isRunning) return;
         setIsRunning(true);
@@ -56,7 +66,14 @@ export default function LinearSearch() {
                     disabled={isRunning}
                     className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 transition-colors"
                 >
-                    Generate New Array
+                    Random Case
+                </button>
+                <button
+                    onClick={generateWorstCase}
+                    disabled={isRunning}
+                    className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50 transition-colors"
+                >
+                    Worst Case
                 </button>
                 <input
                     type="number"

@@ -1,15 +1,15 @@
-import BubbleSort from '@/components/Visualizer/BubbleSort';
+import SelectionSort from '@/components/Visualizer/SelectionSort';
 
-export default function BubbleSortPage() {
+export default function SelectionSortPage() {
     return (
         <div className="flex flex-col items-center justify-center p-8 bg-gray-950 min-h-screen text-white">
-            <h1 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Bubble Sort</h1>
+            <h1 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">Selection Sort</h1>
             <p className="text-gray-400 mb-8 max-w-2xl text-center">
-                Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
+                Selection Sort works by repeatedly finding the minimum element from the unsorted portion and putting it at the beginning.
             </p>
 
             <div className="w-full max-w-4xl bg-gray-900/50 backdrop-blur-md rounded-xl border border-gray-800 p-8 shadow-2xl flex flex-col items-center mb-12">
-                <BubbleSort />
+                <SelectionSort />
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 w-full max-w-4xl">
@@ -18,9 +18,9 @@ export default function BubbleSortPage() {
                     <div className="space-y-4">
                         <div className="flex justify-between items-center">
                             <span className="text-gray-400">Best Case</span>
-                            <span className="px-3 py-1 bg-green-900/30 text-green-400 rounded-lg font-mono text-sm">O(n)</span>
+                            <span className="px-3 py-1 bg-yellow-900/30 text-yellow-400 rounded-lg font-mono text-sm">O(n²)</span>
                         </div>
-                        <div className="text-xs text-gray-500 mb-2 pl-2 border-l-2 border-gray-700">When array is already sorted.</div>
+                        <div className="text-xs text-gray-500 mb-2 pl-2 border-l-2 border-gray-700">Same complexity regardless of order due to finding min.</div>
 
                         <div className="flex justify-between items-center">
                             <span className="text-gray-400">Average Case</span>
@@ -31,34 +31,27 @@ export default function BubbleSortPage() {
                             <span className="text-gray-400">Worst Case</span>
                             <span className="px-3 py-1 bg-red-900/30 text-red-400 rounded-lg font-mono text-sm">O(n²)</span>
                         </div>
-                        <div className="text-xs text-gray-500 pl-2 border-l-2 border-gray-700">When array is reverse sorted.</div>
+                        <div className="text-xs text-gray-500 pl-2 border-l-2 border-gray-700">But only O(n) swaps!</div>
                     </div>
                 </div>
 
                 <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
                     <h3 className="text-xl font-bold text-gray-200 mb-4 border-b border-gray-700 pb-2">How it Works & Tips</h3>
                     <ul className="list-disc list-inside space-y-2 text-gray-300 text-sm mb-6">
-                        <li><strong className="text-blue-400">Comparison:</strong> Compare adjacent elements (e.g., index <code className="bg-gray-800 px-1 rounded">j</code> and <code className="bg-gray-800 px-1 rounded">j+1</code>).</li>
-                        <li><strong className="text-green-400">Swap:</strong> If they are in wrong order (left &gt; right), swap them.</li>
-                        <li><strong className="text-purple-400">Passes:</strong> After each full pass, the largest remaining element "bubbles up" to its correct position at the end.</li>
-                        <li><strong className="text-yellow-400">Optimization Tip:</strong> If no swaps are made during a pass, the array is sorted, and you can stop early!</li>
+                        <li><strong className="text-red-400">Find Min:</strong> Scan entire unsorted portion to find the smallest element.</li>
+                        <li><strong className="text-blue-400">Swap:</strong> Swap it with the first unsorted element.</li>
+                        <li><strong className="text-green-400">Repeat:</strong> Move sorting boundary one position right.</li>
+                        <li><strong className="text-yellow-400">Tip:</strong> Selection Sort performs the minimum number of swaps(O(n)) compared to Bubble/Insertion sort, can be useful when memory writes are expensive.</li>
                     </ul>
 
                     <h3 className="text-xl font-bold text-gray-200 mb-4 border-b border-gray-700 pb-2">Pseudocode</h3>
                     <pre className="bg-black/50 p-4 rounded-lg text-gray-300 font-mono text-xs overflow-x-auto border border-gray-800">
-                        {`procedure bubbleSort(A : list of sortable items)
-    n = length(A)
-    repeat
-        swapped = false
-        for i = 1 to n-1 inclusive do
-            if A[i-1] > A[i] then
-                swap(A[i-1], A[i])
-                swapped = true
-            end if
-        end for
-        n = n - 1
-    until not swapped
-end procedure`}
+                        {`repeat (numOfElements - 1) times
+  set the first unsorted element as the minimum
+  for each of the unsorted elements
+    if element < currentMinimum
+      set element as new minimum
+  swap minimum with first unsorted position`}
                     </pre>
                 </div>
             </div>

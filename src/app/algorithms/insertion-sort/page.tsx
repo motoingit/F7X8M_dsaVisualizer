@@ -1,15 +1,15 @@
-import BubbleSort from '@/components/Visualizer/BubbleSort';
+import InsertionSort from '@/components/Visualizer/InsertionSort';
 
-export default function BubbleSortPage() {
+export default function InsertionSortPage() {
     return (
         <div className="flex flex-col items-center justify-center p-8 bg-gray-950 min-h-screen text-white">
-            <h1 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Bubble Sort</h1>
+            <h1 className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Insertion Sort</h1>
             <p className="text-gray-400 mb-8 max-w-2xl text-center">
-                Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
+                Insertion Sort works like sorting playing cards in your hand. You pick a card and "insert" it into its correct position amongst the already sorted cards.
             </p>
 
             <div className="w-full max-w-4xl bg-gray-900/50 backdrop-blur-md rounded-xl border border-gray-800 p-8 shadow-2xl flex flex-col items-center mb-12">
-                <BubbleSort />
+                <InsertionSort />
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 w-full max-w-4xl">
@@ -38,27 +38,21 @@ export default function BubbleSortPage() {
                 <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
                     <h3 className="text-xl font-bold text-gray-200 mb-4 border-b border-gray-700 pb-2">How it Works & Tips</h3>
                     <ul className="list-disc list-inside space-y-2 text-gray-300 text-sm mb-6">
-                        <li><strong className="text-blue-400">Comparison:</strong> Compare adjacent elements (e.g., index <code className="bg-gray-800 px-1 rounded">j</code> and <code className="bg-gray-800 px-1 rounded">j+1</code>).</li>
-                        <li><strong className="text-green-400">Swap:</strong> If they are in wrong order (left &gt; right), swap them.</li>
-                        <li><strong className="text-purple-400">Passes:</strong> After each full pass, the largest remaining element "bubbles up" to its correct position at the end.</li>
-                        <li><strong className="text-yellow-400">Optimization Tip:</strong> If no swaps are made during a pass, the array is sorted, and you can stop early!</li>
+                        <li><strong className="text-blue-400">Pick:</strong> Take an element from the unsorted part.</li>
+                        <li><strong className="text-purple-400">Shift:</strong> Compare with elements in sorted part and shift them right if they are larger.</li>
+                        <li><strong className="text-green-400">Insert:</strong> Place the element in the correct empty spot.</li>
+                        <li><strong className="text-yellow-400">Advantage:</strong> Very efficient for small datasets (N &lt; 50) and nearly sorted data. Often used as the base case for complex sorts (Merge Sort, Shell Sort).</li>
                     </ul>
 
                     <h3 className="text-xl font-bold text-gray-200 mb-4 border-b border-gray-700 pb-2">Pseudocode</h3>
                     <pre className="bg-black/50 p-4 rounded-lg text-gray-300 font-mono text-xs overflow-x-auto border border-gray-800">
-                        {`procedure bubbleSort(A : list of sortable items)
-    n = length(A)
-    repeat
-        swapped = false
-        for i = 1 to n-1 inclusive do
-            if A[i-1] > A[i] then
-                swap(A[i-1], A[i])
-                swapped = true
-            end if
-        end for
-        n = n - 1
-    until not swapped
-end procedure`}
+                        {`mark first element as sorted
+for each unsorted element X
+  'extract' the element X
+  for j = lastSortedIndex down to 0
+    if current element j > X
+      move sorted element to the right by 1
+    break loop and insert X here`}
                     </pre>
                 </div>
             </div>
