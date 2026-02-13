@@ -1,9 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* Monochrome Theme */
-  --background: #000000;
+  /* Deep Space Background for Glow Pop */
+  --background: #050510;
   --foreground: #ffffff;
+  
+  /* Neon/Glow Palette */
+  --glow-blue: #00f0ff;
+  --glow-purple: #bd00ff;
+  --glow-pink: #ff0055;
+  --glow-green: #00ff9d;
+  
+  /* Glass Accents */
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-surface: rgba(255, 255, 255, 0.03);
 }
 
 @theme inline {
@@ -43,13 +53,39 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  background-color: #000;
-  background-image: none;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(189, 0, 255, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.03) 0%, transparent 20%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Minimalist Scrollbar */
+/* --- GLOSSY & GLOW UTILITIES --- */
+
+.text-glow-blue { text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3); }
+.text-glow-purple { text-shadow: 0 0 10px rgba(189, 0, 255, 0.5), 0 0 20px rgba(189, 0, 255, 0.3); }
+.text-glow-green { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5), 0 0 20px rgba(0, 255, 157, 0.3); }
+
+.glossy-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glossy-card:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 240, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -99,8 +135,10 @@ body {
 
 .glass-water-card:hover {
   border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
+  box-shadow: 
+    0 0 30px rgba(0, 240, 255, 0.1), 
+    0 0 60px rgba(189, 0, 255, 0.05);
+  transform: translateY(-3px) scale(1.01);
 }
 
 .glass-water-card>* {

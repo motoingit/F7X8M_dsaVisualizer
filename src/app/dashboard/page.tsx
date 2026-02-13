@@ -8,6 +8,9 @@ export default function Dashboard() {
                 { name: 'Bubble Sort', href: '/algorithms/bubble-sort', desc: 'Comparison based sort', complexity: 'O(n²)' },
                 { name: 'Selection Sort', href: '/algorithms/selection-sort', desc: 'Find minimum and swap', complexity: 'O(n²)' },
                 { name: 'Insertion Sort', href: '/algorithms/insertion-sort', desc: 'Build sorted array', complexity: 'O(n²)' },
+                { name: 'Merge Sort', href: '/algorithms/merge-sort', desc: 'Divide and Conquer', complexity: 'O(n log n)' },
+                { name: 'Quick Sort', href: '/algorithms/quick-sort', desc: 'Partition based sort', complexity: 'O(n log n)' },
+                { name: 'Heap Sort', href: '/algorithms/heap-sort', desc: 'Binary Heap based', complexity: 'O(n log n)' },
             ]
         },
         {
@@ -15,15 +18,25 @@ export default function Dashboard() {
             items: [
                 { name: 'Linear Search', href: '/algorithms/linear-search', desc: 'Sequential check', complexity: 'O(n)' },
                 { name: 'Binary Search', href: '/algorithms/binary-search', desc: 'Divide and conquer', complexity: 'O(log n)' },
+                { name: 'Exponential Search', href: '/algorithms/exponential-search', desc: 'Unbounded Search', complexity: 'O(log i)' },
                 { name: 'Pathfinding', href: '/algorithms/pathfinding', desc: 'Dijkstra in a grid', complexity: 'O(E+VlogV)' },
             ]
         },
         {
-            title: "Structures",
+            title: "Graphs",
+            items: [
+                { name: 'BFS Traversal', href: '/algorithms/bfs', desc: 'Breadth First Search', complexity: 'O(V+E)' },
+                { name: 'DFS Traversal', href: '/algorithms/dfs', desc: 'Depth First Search', complexity: 'O(V+E)' },
+                { name: 'Hamiltonian Cycle', href: '/algorithms/hamiltonian', desc: 'Visit every node once', complexity: 'O(N!)' },
+            ]
+        },
+        {
+            title: "Data Structures",
             items: [
                 { name: 'Stack', href: '/data-structures/stack', desc: 'LIFO Structure', complexity: 'O(1)' },
                 { name: 'Queue', href: '/data-structures/queue', desc: 'FIFO Structure', complexity: 'O(1)' },
                 { name: 'Binary Search Tree', href: '/data-structures/bst', desc: 'Hierarchical node tree', complexity: 'O(log n)' },
+                { name: 'AVL Tree', href: '/data-structures/avl-tree', desc: 'Self-Balancing BST', complexity: 'O(log n)' },
             ]
         }
     ];
