@@ -80,3 +80,19 @@ Since your app uses authentication, you need a live database.
 -   **Crypto Error**: Ensure you are using the latest version of the code where we fixed the Edge Runtime compatibility in `middleware.ts`.
 
 **Enjoy your live site! 🌍**
+
+## 🛑 Still getting an error?
+
+If you see an error after deployment (like "500 Internal Server Error"), follow these steps to find the exact cause:
+
+1.  **Check Vercel Logs**:
+    *   Go to your Vercel Dashboard -> Project -> **Logs** tab.
+    *   Look for red error messages.
+    *   Common errors:
+        *   `MongooseServerSelectionError`: Your IP Whitelist in MongoDB Atlas covers only your local IP. **Fix**: Set it to `0.0.0.0/0`.
+        *   `Missing environment variable`: You forgot to add `MONGODB_URI` or `NEXTAUTH_SECRET` in Vercel Settings.
+
+2.  **Check Environment Variables**:
+    *   Go to Vercel Project Settings -> **Environment Variables**.
+    *   Ensure `MONGODB_URI` is exactly the same as your `.env` file (but with the real password).
+    *   Ensure `NEXTAUTH_URL` is set to your Vercel domain (e.g., `https://dsa-visualizer.vercel.app`) OR removed (NextAuth v5 often works without it).
