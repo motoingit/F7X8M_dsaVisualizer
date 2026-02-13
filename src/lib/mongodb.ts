@@ -31,9 +31,21 @@ async function connectDB() {
         };
 
         console.log('Connecting to MongoDB...');
-        cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
+
+        // Add robust connection options
+        const connectionOptions = {
+            bufferCommands: false,
+            serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of hanging
+            socketTimeoutMS: 45000,
+        };
+
+        cached.promise = mongoose.connect(MONGODB_URI!, connectionOptions).then((mongoose) => {
             console.log('MongoDB connected successfully');
             return mongoose;
+        }).catch((err) => {
+            console.error('MongoDB connection error details:', err);
+            cached.promise = null; // Reset promise so we can try again
+            throw err;
         });
     }
 

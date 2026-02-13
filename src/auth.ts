@@ -15,22 +15,35 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials) {
-                await connectDB();
-                if (!credentials?.username || !credentials?.password) return null;
+                try {
+                    console.log(`Authorizing user: ${credentials?.username}`);
+                    await connectDB();
+                    console.log('Auth: DB Connected');
 
-                const user = await User.findOne({ username: credentials.username });
-                if (!user) {
+                    if (!credentials?.username || !credentials?.password) return null;
+
+                    const user = await User.findOne({ username: credentials.username });
+                    if (!user) {
+                        console.log('Auth: User not found');
+                        return null;
+                    }
+
+                    if (user.password) {
+                        // @ts-ignore
+                        const isValid = await bcrypt.compare(credentials.password, user.password);
+                        if (!isValid) {
+                            console.log('Auth: Invalid password');
+                            return null;
+                        }
+
+                        console.log('Auth: Success');
+                        return { id: user._id.toString(), name: user.username, email: user.email };
+                    }
+                    return null;
+                } catch (error) {
+                    console.error('Auth Error:', error);
                     return null;
                 }
-
-                if (user.password) {
-                    // @ts-ignore
-                    const isValid = await bcrypt.compare(credentials.password, user.password);
-                    if (!isValid) return null;
-                    return { id: user._id.toString(), name: user.username, email: user.email };
-                }
-
-                return null;
             },
         }),
     ],

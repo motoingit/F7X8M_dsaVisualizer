@@ -166,7 +166,7 @@ export default function BinarySearch() {
                 <div className="flex items-center gap-2"><div className="w-3 h-3 bg-green-500 rounded"></div> Found</div>
             </div>
 
-            <p className="text-xl font-mono min-h-[1.75rem]">{message}</p>
+            <p className="text-xl font-mono min-h-git remote -v[1.75rem]">{message}</p>
         </div>
     );
 }
